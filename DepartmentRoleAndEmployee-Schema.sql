@@ -3,7 +3,7 @@ CREATE database employee_trackerDB;
 
 CREATE TABLE departments (
      PRIMARY KEY(id)
-    name  VARCHAR(30) NULL,
+    name VARCHAR(30) NULL,
     id INT PRIMARY KEY,
 );
 
@@ -26,6 +26,6 @@ CREATE TABLE employee (
     );
 
     SELECT * FROM departments;
-    SELECT * from role;
+    SELECT * FROM role;
     SELECT * FROM employee;
 
