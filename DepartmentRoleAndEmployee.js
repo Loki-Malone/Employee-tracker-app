@@ -17,7 +17,7 @@ connection.connect(function(err) {
     makeTemplate();
   });
 
-  function runSearch() {
+  function makeTemplate() {
     inquirer
       .prompt({
         name: "action",
@@ -48,7 +48,7 @@ connection.connect(function(err) {
       });
   }
 
-  function EmployeeTemplate() {
+  function EmployeeMake() {
     inquirer
       .prompt({
         name: "Employee",
@@ -59,14 +59,14 @@ connection.connect(function(err) {
         var query = "SELECT id, first_name, last_name, role_id, manager_id FROM employee WHERE ?";
         connection.query(query, { employee: answer.employee }, function(err, res) {
           for (var i = 0; i < res.length; i++) {
-            console.log("id: " + res[i].position + " || first_name: " + res[i].first_name+ " || last_mame: " + res[i].last_mame+" || role_id: " + res[i].role_id+" || manager_id: " + res[i].manager_id);
+            console.log("id: " + res[i].id + " || first_name: " + res[i].first_name+ " || last_mame: " + res[i].last_mame+" || role_id: " + res[i].role_id+" || manager_id: " + res[i].manager_id);
           }
-          EmployeeTemplate();
+          makeTemplate();
         });
       });
   }
 
-  function EmployeeTemplate() {
+  function roleMake() {
     inquirer
       .prompt({
         name: "role",
@@ -77,9 +77,28 @@ connection.connect(function(err) {
         var query = "SELECT id, title, salary, department, FROM role WHERE ?";
         connection.query(query, { employee: answer.employee }, function(err, res) {
           for (var i = 0; i < res.length; i++) {
-            console.log("id: " + res[i].position + " || title: " + res[i].title+ " || salary: " + res[i].salary+" || department: " + res[i].department);
+            console.log("id: " + res[i].id + " || title: " + res[i].title+ " || salary: " + res[i].salary+" || department: " + res[i].department);
           }
-          EmployeeTemplate();
+          makeTemplate();
+        });
+      });
+  }
+
+
+  function departmentMake() {
+    inquirer
+      .prompt({
+        name: "department",
+        type: "input",
+        message: "add department here."
+      })
+      .then(function(answer) {
+        var query = "SELECT id, name, FROM department WHERE ?";
+        connection.query(query, { employee: answer.employee }, function(err, res) {
+          for (var i = 0; i < res.length; i++) {
+            console.log("id: " + res[i].id + " || name: " + res[i].name);
+          }
+          makeTemplate();
         });
       });
   }
