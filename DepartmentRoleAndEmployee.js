@@ -28,4 +28,22 @@ connection.connect(function(err) {
           "Add a role",
           "Assiagn a department",
         ]
+      })
+      .then(function(answer) {
+        switch (answer.action) {
+        case "Add an employee":
+          EmployeeTemplate();
+          break;
+  
+        case "add a role":
+          roleTemplate();
+          break;
+  
+        case "Assiagn a department":
+          departmentTemplate();
+          break;
+  
+        
+        }
       });
+  }
