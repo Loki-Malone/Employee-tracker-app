@@ -16,3 +16,16 @@ connection.connect(function(err) {
     if (err) throw err;
     makeTemplate();
   });
+
+  function runSearch() {
+    inquirer
+      .prompt({
+        name: "action",
+        type: "rawlist",
+        message: "What would you like to do?",
+        choices: [
+          "Add an employee",
+          "Add a role",
+          "Assiagn a department",
+        ]
+      });
