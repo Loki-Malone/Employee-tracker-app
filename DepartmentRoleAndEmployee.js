@@ -47,3 +47,21 @@ connection.connect(function(err) {
         }
       });
   }
+
+  function EmployeeTemplate() {
+    inquirer
+      .prompt({
+        name: "Employee",
+        type: "input",
+        message: "Put Employee info here."
+      })
+      .then(function(answer) {
+        var query = "SELECT id, first_name, last_name, role_id, manager_id FROM employee WHERE ?";
+        connection.query(query, { employee: answer.employee }, function(err, res) {
+          for (var i = 0; i < res.length; i++) {
+            console.log("id: " + res[i].position + " || first_name: " + res[i].first_name+ " || last_mame: " + res[i].last_mame+" || role_id: " + res[i].role_id+" || manager_id: " + res[i].manager_id);
+          }
+          EmployeeTemplate();
+        });
+      });
+  }
