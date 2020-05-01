@@ -65,3 +65,21 @@ connection.connect(function(err) {
         });
       });
   }
+
+  function EmployeeTemplate() {
+    inquirer
+      .prompt({
+        name: "role",
+        type: "input",
+        message: "Assign role info here."
+      })
+      .then(function(answer) {
+        var query = "SELECT id, title, salary, department, FROM role WHERE ?";
+        connection.query(query, { employee: answer.employee }, function(err, res) {
+          for (var i = 0; i < res.length; i++) {
+            console.log("id: " + res[i].position + " || title: " + res[i].title+ " || salary: " + res[i].salary+" || department: " + res[i].department);
+          }
+          EmployeeTemplate();
+        });
+      });
+  }
